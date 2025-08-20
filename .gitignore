@@ -1,0 +1,6 @@
+*.ipynb_checkpoints
+*/output/*
+*.sif
+*.nc
+*.out
+*startup.sh
