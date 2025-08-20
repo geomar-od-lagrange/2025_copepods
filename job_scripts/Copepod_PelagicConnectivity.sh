@@ -2,7 +2,7 @@
 #SBATCH --job-name=Copepod_Pelagic
 #SBATCH --ntasks=16
 #SBATCH --cpus-per-task=2
-#SBATCH --mem-per-cpu=50G
+#SBATCH --mem-per-cpu=80G
 #SBATCH --time=48:00:00
 #SBATCH --partition=base
 
@@ -19,7 +19,7 @@ mkdir -p notebooks_executed/
 
 # run for single notebook and put into background
 
-for year in {2021..2024}; do
+for year in {2016..2017}; do
     mkdir -p notebooks_executed/${year}/
     srun --ntasks=10 --exclusive singularity run -B /sfs -B /gxfs_work -B $PWD:/work --pwd /work parcels-container_2024.10.07-7af7fd0.sif bash -c \
     ". /opt/conda/etc/profile.d/conda.sh && conda activate base \
