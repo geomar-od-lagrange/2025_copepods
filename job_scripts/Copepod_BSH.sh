@@ -18,7 +18,7 @@ module load singularity/3.11.5
 mkdir -p notebooks_executed/
 
 # run for single notebook and put into background
-for year in {2016..2017}; do
+for year in {2023..2023}; do
     mkdir -p notebooks_executed/TrajectoryCalc/${year}/
     mkdir -p output/Trajectories/${year}/
     for site_counter in {0..15}; do
@@ -31,7 +31,7 @@ for year in {2016..2017}; do
             -p start_month 6 \
             -p start_day 1 \
             -p end_month 11 \
-            -p end_day 1 \
+            -p end_day 30 \
             -p max_age_d 28 \
             -p dt_in_minutes 15 \
             -p output_dt_in_minutes 15 \
