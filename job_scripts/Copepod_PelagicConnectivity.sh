@@ -18,7 +18,7 @@ module load singularity/3.11.5
 # make sure the output exists
 mkdir -p notebooks_executed/
 
-year=2019
+year=2020
 # run for single notebook and put into background
 # for year in {2017..2020}; do
 for site in {0..15}; do
@@ -30,6 +30,7 @@ for site in {0..15}; do
                 notebooks/SiteConnectivityPelagic.ipynb \
                 notebooks_executed/dispersal/${year}/Copepods_dispersal_${year}_s${site}.ipynb \
                 -p site ${site} \
+                -p year ${year} \
                 -p isPapermill True \
                 -k python" &
 done
