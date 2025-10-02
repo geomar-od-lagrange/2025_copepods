@@ -18,15 +18,15 @@ module load singularity/3.11.5
 mkdir -p notebooks_executed/
 
 # run for single notebook and put into background
-for year in {2023..2023}; do
+for year in {2022..2024}; do
     mkdir -p notebooks_executed/TrajectoryCalc/${year}/
     mkdir -p output/Trajectories/${year}/
-    for site_counter in {0..15}; do
+    for site_counter in {0..14}; do
         srun --ntasks=1 --exclusive singularity run -B /sfs -B /gxfs_work -B $PWD:/work --pwd /work parcels-container_2024.10.07-7af7fd0.sif bash -c \
         ". /opt/conda/etc/profile.d/conda.sh && conda activate base \
         && papermill --cwd notebooks/ \
             notebooks/Copepods.ipynb \
-            notebooks_executed/TrajectoryCalc/${year}/Copepods_${year}_site${site_counter}.ipynb \
+            notebooks_executed/TrajectoryCalc/${year}/Copepods_${year}_sitenew${site_counter}.ipynb \
             -p year ${year} \
             -p start_month 6 \
             -p start_day 1 \
