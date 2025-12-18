@@ -5,3 +5,4 @@ output/*
 notebooks_executed/*
 *.out
 *startup.sh
+.pdf
