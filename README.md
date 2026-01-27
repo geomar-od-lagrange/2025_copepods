@@ -1,4 +1,4 @@
-# 2025_copepods
+# 2025 Copepod Dispersal
 
 Workflow to reproduce Lagrangian dispersal simulations to assess connectivity between copopod populations in the Baltic Sea & North Sea. The repository includes job scripts to execute notebooks to run particle dispersal experiments and produce particle trajectories, and notebooks for the connectivity analysis and figure production. 
 
