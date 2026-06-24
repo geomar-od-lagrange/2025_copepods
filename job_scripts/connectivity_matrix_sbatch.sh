@@ -20,15 +20,15 @@ mkdir -p notebooks_executed/
 
 # run for single notebook and put into background
 # for year in {2024}; do
-year=2024
+year=2016
 north_sea_locations='original'
-for site in {1..27}; do
-        mkdir -p notebooks_executed/connectivity_orignal/${year}/
+for site in {0..27}; do
+        mkdir -p notebooks_executed/connectivity_${north_sea_locations}/${year}/
         srun --ntasks=1 --nodes=1 --exclusive -c 2 singularity run -B /sfs -B /gxfs_work -B $PWD:/work --pwd /work parcels-container_2024.10.07-7af7fd0.sif bash -c \
         ". /opt/conda/etc/profile.d/conda.sh && conda activate base \
         && papermill --cwd notebooks/ \
                 notebooks/SiteConnectivityVoronoi.ipynb \
-                notebooks_executed/connectivity_orignal/${year}/connectivity_${north_sea_locations}_${year}_s${site}.ipynb \
+                notebooks_executed/connectivity_${north_sea_locations}/${year}/connectivity_${north_sea_locations}_${year}_s${site}.ipynb \
                 -p site ${site} \
                 -p year ${year} \
                 -p north_sea_locations ${north_sea_locations} \
