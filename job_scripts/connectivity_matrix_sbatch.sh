@@ -1,9 +1,9 @@
 #!/bin/bash
-#SBATCH --job-name=connectivity_original_locations
-#SBATCH --ntasks=4
-#SBATCH --cpus-per-task=2
+#SBATCH --job-name=connectivity_matrices
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
 #SBATCH --mem-per-cpu=80G
-#SBATCH --time=4:00:00
+#SBATCH --time=8:00:00
 #SBATCH --partition=base
 
 
@@ -19,22 +19,18 @@ module load singularity/3.11.5
 mkdir -p notebooks_executed/
 
 # run for single notebook and put into background
-# for year in {2024}; do
-year=2016
-north_sea_locations='original'
-for site in {0..27}; do
-        mkdir -p notebooks_executed/connectivity_${north_sea_locations}/${year}/
+for year in 2018; do
+# for site in {0..27}; do
+        mkdir -p notebooks_executed/connectivity_matrices/${year}
         srun --ntasks=1 --nodes=1 --exclusive -c 2 singularity run -B /sfs -B /gxfs_work -B $PWD:/work --pwd /work parcels-container_2024.10.07-7af7fd0.sif bash -c \
         ". /opt/conda/etc/profile.d/conda.sh && conda activate base \
         && papermill --cwd notebooks/ \
-                notebooks/SiteConnectivityVoronoi.ipynb \
-                notebooks_executed/connectivity_${north_sea_locations}/${year}/connectivity_${north_sea_locations}_${year}_s${site}.ipynb \
-                -p site ${site} \
+                notebooks/create_yearly_connectivity_matrices.ipynb \
+                notebooks_executed/connectivity_matrices/${year}/connectivity_matrices_${year}.ipynb \
                 -p year ${year} \
-                -p north_sea_locations ${north_sea_locations} \
-                -p isPapermill True \
                 -k python" &
 done
+# done
     
 # wait till background task is done
 wait
