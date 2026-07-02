@@ -1,6 +1,6 @@
 *.ipynb_checkpoints
 output/*
-!output/connectivity_matrices/*
+!output/connectivity_matrices
 *.sif
 *.nc
 notebooks_executed/*
